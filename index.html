@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/59109fc361.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Expenses Tracker</title>
+  </head>
+  <body>
+    <div class="dashboard">
+      <div class="categories">
+        <h2 class="categories-title"></h2>
+        <div class="date-wrapper">
+          <button class="month-arrow-left">
+            <i class="fa-solid fa-caret-left"></i>
+          </button>
+          <h2 class="month-title"></h2>
+          <button class="month-arrow-right">
+            <i class="fa-solid fa-caret-right"></i>
+          </button>
+        </div>
+        <div class="categories-items">
+          <div class="category-item" data-category-item="food">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <div class="category-item" data-category-item="education">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="category-item" data-category-item="transport">
+            <i class="fa-solid fa-car"></i>
+          </div>
+          <div class="category-item" data-category-item="travel">
+            <i class="fa-solid fa-plane"></i>
+          </div>
+          <div class="category-item" data-category-item="clothes">
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+          <div class="category-item" data-category-item="sport">
+            <i class="fa-solid fa-dumbbell"></i>
+          </div>
+          <div class="category-item" data-category-item="health">
+            <i class="fa-solid fa-kit-medical"></i>
+          </div>
+          <div class="category-item" data-category-item="gifts">
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div class="category-item" data-category-item="house">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <div class="category-item" data-category-item="bills">
+            <i class="fa-solid fa-faucet-drip"></i>
+          </div>
+          <div class="category-item" data-category-item="furniture">
+            <i class="fa-solid fa-couch"></i>
+          </div>
+          <!-- <div class="category-item" data-category-item="devices">
+            <i class="fa-solid fa-desktop"></i>
+          </div> -->
+          <div class="category-item" data-category-item="pets">
+            <i class="fa-solid fa-dog"></i>
+          </div>
+          <div class="category-item" data-category-item="service">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <div class="category-item" data-category-item="hobbies">
+            <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+          </div>
+          <!-- <div class="category-item" data-category-item="other">
+            <i class="fa-solid fa-star"></i>
+          </div> -->
+        </div>
+      </div>
+      <div class="data">
+        <form class="limits">
+          <p class="current-limit"></p>
+          <input class="current-limit-input" type="text" value="" />
+          <button class="current-limit-btn" type="submit">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </form>
+      </div>
+      <div class="categories-chart-month">
+        <h2 class="categories-chart-month-title">Total Expenses Per Month</h2>
+        <div class="categories-chart-month-board">
+          <canvas id="catMonthChart" width="300" height="300"></canvas>
+          <p class="expenditure"></p>
+          <p class="income"></p>
+        </div>
+      </div>
+      <div class="categories-chart-year">
+        <h2 class="categories-chart-year-title">Total Expenses Per Year</h2>
+        <div class="categories-chart-year-board">
+          <canvas id="catYearChart" width="600" height="350"></canvas>
+        </div>
+      </div>
+      <div class="calculation"></div>
+      <div class="sub-categories">
+        <h2 class="sub-categories-title"></h2>
+        <div class="sub-categories-items">
+          <!-- FOOD -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="alcohol"
+          >
+            <i class="fa-solid fa-champagne-glasses"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="coffee"
+          >
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="burger"
+          >
+            <i class="fa-solid fa-burger"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="food"
+          >
+            <i class="fa-solid fa-bowl-rice"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="vegetables"
+          >
+            <i class="fa-solid fa-carrot"></i>
+          </div>
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
+            <i class="fa-solid fa-pizza-slice"></i>
+          </div> -->
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
+            <i class="fa-solid fa-cookie"></i>
+          </div> -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="fish"
+          >
+            <i class="fa-solid fa-fish-fins"></i>
+          </div>
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
+            <i class="fa-solid fa-plate-wheat"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
+            <i class="fa-solid fa-shrimp"></i>
+          </div> -->
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
+            <i class="fa-solid fa-egg"></i>
+          </div> -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="sweets"
+          >
+            <i class="fa-solid fa-ice-cream"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-food"
+            data-subcategory-item-name="seeds"
+          >
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <!-- EDUCATION -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-education"
+            data-subcategory-item-name="university"
+          >
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-education"
+            data-subcategory-item-name="books"
+          >
+            <i class="fa-solid fa-book"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-education"
+            data-subcategory-item-name="courses"
+          >
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <!-- TRANSPORT -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="bicycle"
+          >
+            <i class="fa-solid fa-bicycle"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="motorcycle"
+          >
+            <i class="fa-solid fa-motorcycle"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="bus"
+          >
+            <i class="fa-solid fa-bus"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="taxi"
+          >
+            <i class="fa-solid fa-taxi"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="car"
+          >
+            <i class="fa-solid fa-car"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="tram"
+          >
+            <i class="fa-solid fa-train-tram"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-transport"
+            data-subcategory-item-name="train"
+          >
+            <i class="fa-solid fa-train"></i>
+          </div>
+          <!-- TRAVEL -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="bus"
+          >
+            <i class="fa-solid fa-bus"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="train"
+          >
+            <i class="fa-solid fa-train"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="ferry"
+          >
+            <i class="fa-solid fa-ferry"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="plane"
+          >
+            <i class="fa-solid fa-plane"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="car"
+          >
+            <i class="fa-solid fa-car-side"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="sailboat"
+          >
+            <i class="fa-solid fa-sailboat"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="mountain-city"
+          >
+            <i class="fa-solid fa-mountain-city"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-travel"
+            data-subcategory-item-name="hotel"
+          >
+            <i class="fa-solid fa-hotel"></i>
+          </div>
+          <!-- CLOTHES -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-clothes"
+            data-subcategory-item-name="socks"
+          >
+            <i class="fa-solid fa-socks"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-clothes"
+            data-subcategory-item-name="t-shirts"
+          >
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-clothes"
+            data-subcategory-item-name="mittens"
+          >
+            <i class="fa-solid fa-mitten"></i>
+          </div>
+          <!-- SPORT -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-sport"
+            data-subcategory-item-name="equipment"
+          >
+            <i class="fa-solid fa-weight-hanging"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-sport"
+            data-subcategory-item-name="gym"
+          >
+            <i class="fa-solid fa-dumbbell"></i>
+          </div>
+          <!-- HEALTH -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-health"
+            data-subcategory-item-name="tooth"
+          >
+            <i class="fa-solid fa-tooth"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-health"
+            data-subcategory-item-name="syringe"
+          >
+            <i class="fa-solid fa-syringe"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-health"
+            data-subcategory-item-name="virus"
+          >
+            <i class="fa-solid fa-virus"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-health"
+            data-subcategory-item-name="bacterium"
+          >
+            <i class="fa-solid fa-bacterium"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-health"
+            data-subcategory-item-name="bone"
+          >
+            <i class="fa-solid fa-bone"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-health"
+            data-subcategory-item-name="pills"
+          >
+            <i class="fa-solid fa-pills"></i>
+          </div>
+
+          <!-- GIFTS -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-gifts"
+            data-subcategory-item-name="gifts"
+          >
+            <i class="fa-solid fa-gifts"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-gifts"
+            data-subcategory-item-name="cash"
+          >
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+          </div>
+
+          <!-- HOUSE -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-house"
+            data-subcategory-item-name="rent"
+          >
+            <i class="fa-solid fa-warehouse"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-house"
+            data-subcategory-item-name="mortgage"
+          >
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+
+          <!-- BILLS -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="electricity"
+          >
+            <i class="fa-solid fa-plug"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="gas"
+          >
+            <i class="fa-solid fa-gas-pump"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="water"
+          >
+            <i class="fa-solid fa-faucet-drip"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="trash"
+          >
+            <i class="fa-solid fa-trash-can"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="wifi"
+          >
+            <i class="fa-solid fa-wifi"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="phone"
+          >
+            <i class="fa-solid fa-phone"></i>
+          </div>
+
+          <!-- FURNITURE -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-furniture"
+            data-subcategory-item-name="chair"
+          >
+            <i class="fa-solid fa-chair"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-furniture"
+            data-subcategory-item-name="bed"
+          >
+            <i class="fa-solid fa-bed"></i>
+          </div>
+          <!-- DEVICES -->
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-devices">
+            <i class="fa-solid fa-tv"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-devices">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-devices">
+            <i class="fa-solid fa-laptop"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-devices">
+            <i class="fa-solid fa-radio"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-devices">
+            <i class="fa-solid fa-desktop"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-devices">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div> -->
+          <!-- PETS -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-pets"
+            data-subcategory-item-name="cat"
+          >
+            <i class="fa-solid fa-cat"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-pets"
+            data-subcategory-item-name="dog"
+          >
+            <i class="fa-solid fa-dog"></i>
+          </div>
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-pets" >
+            <i class="fa-solid fa-shield-dog"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-pets">
+            <i class="fa-solid fa-shield-cat"></i>
+          </div> -->
+          <!-- SERVICE -->
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-service" data-subcategory-item-name="">
+            <i class="fa-solid fa-screwdriver"></i>
+          </div>
+          <div class="sub-category-item" data-subcategory-item="sub-service" data-subcategory-item-name="">
+            <i class="fa-solid fa-hammer"></i>
+          </div> -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-service"
+            data-subcategory-item-name="wrench"
+          >
+            <i class="fa-solid fa-wrench"></i>
+          </div>
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-service" data-subcategory-item-name="">
+            <i class="fa-solid fa-stairs"></i>
+          </div> -->
+
+          <!-- HOBBIES -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-hobbies"
+            data-subcategory-item-name="volleyball"
+          >
+            <i class="fa-solid fa-volleyball"></i>
+          </div>
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-hobbies" data-subcategory-item-name="">
+            <i class="fa-solid fa-baseball-bat-ball"></i>
+          </div> -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-hobbies"
+            data-subcategory-item-name="snowboarding"
+          >
+            <i class="fa-solid fa-person-snowboarding"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-hobbies"
+            data-subcategory-item-name="swimming"
+          >
+            <i class="fa-solid fa-person-swimming"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-hobbies"
+            data-subcategory-item-name="hiking"
+          >
+            <i class="fa-solid fa-person-hiking"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-hobbies"
+            data-subcategory-item-name="skating"
+          >
+            <i class="fa-solid fa-person-skating"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-hobbies"
+            data-subcategory-item-name="biking"
+          >
+            <i class="fa-solid fa-person-biking"></i>
+          </div>
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-hobbies" data-subcategory-item-name="">
+            <i class="fa-solid fa-bowling-ball"></i>
+          </div> -->
+
+          <!-- OTHER -->
+          <!-- <div class="sub-category-item" data-subcategory-item="sub-other">
+            <i class="fa-solid fa-circle-question"></i>
+          </div> -->
+        </div>
+
+        <div class="add-expenses">
+          <form action="" class="input-expenses-form">
+            <input type="number" class="input-expenses" />
+            <button type="submit" class="input-expenses-btn">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <button type="submit" class="expenses-save-btn">
+              <i class="fa-solid fa-save"></i>
+            </button>
+            <!-- <button>
+              <a
+                class="mylink"
+                download="monty.txt"
+                href="data:text/plain;charset=utf-8,My name is Monty."
+                >Download Text File with Name</a
+              >
+            </button> -->
+          </form>
+        </div>
+      </div>
+      <div class="sub-categories-chart-month">
+        <h2 class="sub-categories-chart-month-title"></h2>
+        <div class="sub-categories-chart-month-board">
+          <canvas id="subCatMonthChart" width="300" height="300"></canvas>
+          <p class="expenditure"></p>
+          <p class="income"></p>
+        </div>
+      </div>
+      <div class="sub-categories-chart-year">
+        <h2 class="sub-categories-chart-year-title"></h2>
+        <div class="sub-categories-chart-year-board">
+          <canvas id="subCatYearChart" width="600" height="350"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- <form action="">
+      <input type="number" class="amount-expenses" name="amount" id="" />
+      <input type="color" class="amount-color" name="" id="" />
+      <input type="text" class="type-expenses" name="type" id="" />
+      <button type="submit" class="add-expenses-btn">Add Expenses</button>
+    </form>
+    <div class="board">
+      <canvas id="myChart" width="300" height="300"></canvas>
+      <p class="balance">Balance: 10 899 Euro</p>
+    </div> -->
+    <script src="app.js"></script>
+  </body>
+</html>
