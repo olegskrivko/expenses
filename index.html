@@ -14,6 +14,7 @@
     <title>Expenses Tracker</title>
   </head>
   <body>
+    <!-- <div class="side-menu"></div> -->
     <div class="dashboard">
       <div class="categories">
         <h2 class="categories-title"></h2>
@@ -26,6 +27,7 @@
             <i class="fa-solid fa-caret-right"></i>
           </button>
         </div>
+
         <div class="categories-items">
           <div class="category-item" data-category-item="food">
             <i class="fa-solid fa-utensils"></i>
@@ -48,23 +50,11 @@
           <div class="category-item" data-category-item="health">
             <i class="fa-solid fa-kit-medical"></i>
           </div>
-          <div class="category-item" data-category-item="gifts">
-            <i class="fa-solid fa-gift"></i>
-          </div>
           <div class="category-item" data-category-item="house">
             <i class="fa-solid fa-house"></i>
           </div>
           <div class="category-item" data-category-item="bills">
-            <i class="fa-solid fa-faucet-drip"></i>
-          </div>
-          <div class="category-item" data-category-item="furniture">
-            <i class="fa-solid fa-couch"></i>
-          </div>
-          <!-- <div class="category-item" data-category-item="devices">
-            <i class="fa-solid fa-desktop"></i>
-          </div> -->
-          <div class="category-item" data-category-item="pets">
-            <i class="fa-solid fa-dog"></i>
+            <i class="fa-solid fa-hand-holding-dollar"></i>
           </div>
           <div class="category-item" data-category-item="service">
             <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -72,18 +62,23 @@
           <div class="category-item" data-category-item="hobbies">
             <i class="fa-solid fa-table-tennis-paddle-ball"></i>
           </div>
-          <!-- <div class="category-item" data-category-item="other">
+          <div class="category-item" data-category-item="other">
             <i class="fa-solid fa-star"></i>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="data">
         <form class="limits">
           <p class="current-limit"></p>
-          <input class="current-limit-input" type="text" value="" />
-          <button class="current-limit-btn" type="submit">
-            <i class="fa-solid fa-plus"></i>
-          </button>
+          <div class="limit-wrapper">
+            <input class="current-limit-input" type="text" value="" />
+            <button class="current-limit-btn" type="submit">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="clear-limit-btn">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+          </div>
         </form>
       </div>
       <div class="categories-chart-month">
@@ -100,7 +95,19 @@
           <canvas id="catYearChart" width="600" height="350"></canvas>
         </div>
       </div>
-      <div class="calculation"></div>
+      <div class="calculation">
+        <!-- <h3 class="statistics-title-total-exp">TOTAL EXPENSES: 6 300</h3> -->
+        <!-- <h3 class="statistics-title-balance">CURRENT BALANCE: 10 222</h3> -->
+        <!-- <h3 class="statistics-title-total-income">TOTAL INCOME: 21 000</h3> -->
+        <!-- <h3 class="statistics-title-avg-exp">AVG EXPENSES PER MONTH: 500</h3> -->
+        <!-- <h3 class="statistics-title-avg-income">AVG INCOME: 2 000</h3>
+        <h3 class="statistics-title-avg-savings">AVG SAVINGS PER MONTH: 700</h3> -->
+        <h3 class="statistics-title">MOST MONEY SPENT ON</h3>
+        <h3 class="statistics-title-most-spent-on"></h3>
+        <h3 class="statistics-title">MOST MONEY SPENT IN</h3>
+        <h3 class="statistics-title-most-spent-in"></h3>
+        <!-- <h3 class="statistics-title">THE MOST SAVINGS MADE IN: AUGUST</h3> -->
+      </div>
       <div class="sub-categories">
         <h2 class="sub-categories-title"></h2>
         <div class="sub-categories-items">
@@ -129,9 +136,9 @@
           <div
             class="sub-category-item"
             data-subcategory-item="sub-food"
-            data-subcategory-item-name="food"
+            data-subcategory-item-name="meat"
           >
-            <i class="fa-solid fa-bowl-rice"></i>
+            <i class="fa-solid fa-drumstick-bite"></i>
           </div>
           <div
             class="sub-category-item"
@@ -140,12 +147,6 @@
           >
             <i class="fa-solid fa-carrot"></i>
           </div>
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
-            <i class="fa-solid fa-pizza-slice"></i>
-          </div> -->
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
-            <i class="fa-solid fa-cookie"></i>
-          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-food"
@@ -153,15 +154,6 @@
           >
             <i class="fa-solid fa-fish-fins"></i>
           </div>
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
-            <i class="fa-solid fa-plate-wheat"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
-            <i class="fa-solid fa-shrimp"></i>
-          </div> -->
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-food" data-subcategory-item-name="">
-            <i class="fa-solid fa-egg"></i>
-          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-food"
@@ -169,13 +161,7 @@
           >
             <i class="fa-solid fa-ice-cream"></i>
           </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-food"
-            data-subcategory-item-name="seeds"
-          >
-            <i class="fa-solid fa-seedling"></i>
-          </div>
+
           <!-- EDUCATION -->
           <div
             class="sub-category-item"
@@ -199,13 +185,7 @@
             <i class="fa-solid fa-user-graduate"></i>
           </div>
           <!-- TRANSPORT -->
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-transport"
-            data-subcategory-item-name="bicycle"
-          >
-            <i class="fa-solid fa-bicycle"></i>
-          </div>
+
           <div
             class="sub-category-item"
             data-subcategory-item="sub-transport"
@@ -234,22 +214,22 @@
           >
             <i class="fa-solid fa-car"></i>
           </div>
-          <div
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-transport"
             data-subcategory-item-name="tram"
           >
             <i class="fa-solid fa-train-tram"></i>
-          </div>
-          <div
+          </div> -->
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-transport"
             data-subcategory-item-name="train"
           >
             <i class="fa-solid fa-train"></i>
-          </div>
+          </div> -->
           <!-- TRAVEL -->
-          <div
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
             data-subcategory-item-name="bus"
@@ -269,7 +249,7 @@
             data-subcategory-item-name="ferry"
           >
             <i class="fa-solid fa-ferry"></i>
-          </div>
+          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
@@ -277,14 +257,14 @@
           >
             <i class="fa-solid fa-plane"></i>
           </div>
-          <div
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
             data-subcategory-item-name="car"
           >
             <i class="fa-solid fa-car-side"></i>
-          </div>
-          <div
+          </div> -->
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
             data-subcategory-item-name="sailboat"
@@ -297,7 +277,7 @@
             data-subcategory-item-name="mountain-city"
           >
             <i class="fa-solid fa-mountain-city"></i>
-          </div>
+          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
@@ -306,35 +286,22 @@
             <i class="fa-solid fa-hotel"></i>
           </div>
           <!-- CLOTHES -->
+
           <div
             class="sub-category-item"
             data-subcategory-item="sub-clothes"
-            data-subcategory-item-name="socks"
-          >
-            <i class="fa-solid fa-socks"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-clothes"
-            data-subcategory-item-name="t-shirts"
+            data-subcategory-item-name="outerwear"
           >
             <i class="fa-solid fa-shirt"></i>
           </div>
           <div
             class="sub-category-item"
             data-subcategory-item="sub-clothes"
-            data-subcategory-item-name="mittens"
+            data-subcategory-item-name="accessories"
           >
-            <i class="fa-solid fa-mitten"></i>
+            <i class="fa-solid fa-ring"></i>
           </div>
           <!-- SPORT -->
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-sport"
-            data-subcategory-item-name="equipment"
-          >
-            <i class="fa-solid fa-weight-hanging"></i>
-          </div>
           <div
             class="sub-category-item"
             data-subcategory-item="sub-sport"
@@ -346,38 +313,18 @@
           <div
             class="sub-category-item"
             data-subcategory-item="sub-health"
-            data-subcategory-item-name="tooth"
+            data-subcategory-item-name="dental"
           >
             <i class="fa-solid fa-tooth"></i>
           </div>
           <div
             class="sub-category-item"
             data-subcategory-item="sub-health"
-            data-subcategory-item-name="syringe"
+            data-subcategory-item-name="spa"
           >
-            <i class="fa-solid fa-syringe"></i>
+            <i class="fa-solid fa-spa"></i>
           </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-health"
-            data-subcategory-item-name="virus"
-          >
-            <i class="fa-solid fa-virus"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-health"
-            data-subcategory-item-name="bacterium"
-          >
-            <i class="fa-solid fa-bacterium"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-health"
-            data-subcategory-item-name="bone"
-          >
-            <i class="fa-solid fa-bone"></i>
-          </div>
+
           <div
             class="sub-category-item"
             data-subcategory-item="sub-health"
@@ -387,7 +334,7 @@
           </div>
 
           <!-- GIFTS -->
-          <div
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-gifts"
             data-subcategory-item-name="gifts"
@@ -400,7 +347,7 @@
             data-subcategory-item-name="cash"
           >
             <i class="fa-solid fa-hand-holding-dollar"></i>
-          </div>
+          </div> -->
 
           <!-- HOUSE -->
           <div
@@ -416,6 +363,22 @@
             data-subcategory-item-name="mortgage"
           >
             <i class="fa-solid fa-house-chimney"></i>
+          </div>
+
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-house"
+            data-subcategory-item-name="furniture"
+          >
+            <i class="fa-solid fa-couch"></i>
+          </div>
+
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-house"
+            data-subcategory-item-name="electronics"
+          >
+            <i class="fa-solid fa-desktop"></i>
           </div>
 
           <!-- BILLS -->
@@ -461,9 +424,16 @@
           >
             <i class="fa-solid fa-phone"></i>
           </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-bills"
+            data-subcategory-item-name="heating"
+          >
+            <i class="fa-solid fa-temperature-high"></i>
+          </div>
 
           <!-- FURNITURE -->
-          <div
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-furniture"
             data-subcategory-item-name="chair"
@@ -476,7 +446,7 @@
             data-subcategory-item-name="bed"
           >
             <i class="fa-solid fa-bed"></i>
-          </div>
+          </div> -->
           <!-- DEVICES -->
           <!-- <div class="sub-category-item" data-subcategory-item="sub-devices">
             <i class="fa-solid fa-tv"></i>
@@ -497,7 +467,7 @@
             <i class="fa-solid fa-mobile-screen-button"></i>
           </div> -->
           <!-- PETS -->
-          <div
+          <!-- <div
             class="sub-category-item"
             data-subcategory-item="sub-pets"
             data-subcategory-item-name="cat"
@@ -510,7 +480,7 @@
             data-subcategory-item-name="dog"
           >
             <i class="fa-solid fa-dog"></i>
-          </div>
+          </div> -->
           <!-- <div class="sub-category-item" data-subcategory-item="sub-pets" >
             <i class="fa-solid fa-shield-dog"></i>
           </div>
@@ -527,7 +497,7 @@
           <div
             class="sub-category-item"
             data-subcategory-item="sub-service"
-            data-subcategory-item-name="wrench"
+            data-subcategory-item-name="repair"
           >
             <i class="fa-solid fa-wrench"></i>
           </div>
@@ -543,9 +513,6 @@
           >
             <i class="fa-solid fa-volleyball"></i>
           </div>
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-hobbies" data-subcategory-item-name="">
-            <i class="fa-solid fa-baseball-bat-ball"></i>
-          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-hobbies"
@@ -581,14 +548,30 @@
           >
             <i class="fa-solid fa-person-biking"></i>
           </div>
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-hobbies" data-subcategory-item-name="">
-            <i class="fa-solid fa-bowling-ball"></i>
-          </div> -->
 
           <!-- OTHER -->
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-other">
-            <i class="fa-solid fa-circle-question"></i>
-          </div> -->
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-other"
+            data-subcategory-item-name="gift"
+          >
+            <i class="fa-solid fa-gift"></i>
+          </div>
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-other"
+            data-subcategory-item-name="pets"
+          >
+            <i class="fa-solid fa-dog"></i>
+          </div>
+
+          <div
+            class="sub-category-item"
+            data-subcategory-item="sub-other"
+            data-subcategory-item-name="cash"
+          >
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
         </div>
 
         <div class="add-expenses">
@@ -597,9 +580,12 @@
             <button type="submit" class="input-expenses-btn">
               <i class="fa-solid fa-plus"></i>
             </button>
-            <button type="submit" class="expenses-save-btn">
-              <i class="fa-solid fa-save"></i>
+            <button class="clear-all-data-btn">
+              <i class="fa-solid fa-trash-can"></i>
             </button>
+            <!-- <button type="submit" class="expenses-save-btn">
+              <i class="fa-solid fa-save"></i>
+            </button> -->
             <!-- <button>
               <a
                 class="mylink"

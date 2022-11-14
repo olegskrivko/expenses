@@ -11,6 +11,23 @@ let currentLimit = document.querySelector(".current-limit");
 let currentLimitInput = document.querySelector(".current-limit-input");
 let currentLimitBtn = document.querySelector(".current-limit-btn");
 
+// side menu
+// let sideMenu = document.querySelector(".side-menu");
+
+// let statisticsTitleTotalExp = document.querySelector(
+//   ".statistics-title-total-exp"
+// );
+
+// let statisticsTitleAvgExp = document.querySelector(".statistics-title-avg-exp");
+
+let clearLimitBtn = document.querySelector(".clear-limit-btn");
+
+let statisticsTitleMostSpentOn = document.querySelector(
+  ".statistics-title-most-spent-on"
+);
+
+let clearAllDataBtn = document.querySelector(".clear-all-data-btn");
+
 // chart titles
 let categoriesChartMonthTitle = document.querySelector(
   ".categories-chart-month-title"
@@ -30,16 +47,35 @@ let monthArrowRight = document.querySelector(".month-arrow-right");
 let expenditureTotal = document.querySelector(
   ".categories-chart-month-board .expenditure"
 );
-let incomeTotal = document.querySelector(
-  ".categories-chart-month-board .income"
+// let incomeTotal = document.querySelector(
+//   ".categories-chart-month-board .income"
+// );
+
+// let statisticsTitleAvgIncome = document.querySelector(
+//   ".statistics-title-avg-income"
+// );
+// let statisticsTitleTotalIncome = document.querySelector(
+//   ".statistics-title-total-income"
+// );
+
+// let statisticsTitleBalance = document.querySelector(
+//   ".statistics-title-balance"
+// );
+
+// let statisticsTitleAvgSavings = document.querySelector(
+//   ".statistics-title-avg-savings"
+// );
+
+let statisticsTitleMostSpentIn = document.querySelector(
+  ".statistics-title-most-spent-in"
 );
 
 let expenditureSubCat = document.querySelector(
   ".sub-categories-chart-month-board .expenditure"
 );
-let incomeSubCat = document.querySelector(
-  ".sub-categories-chart-month-board .income"
-);
+// let incomeSubCat = document.querySelector(
+//   ".sub-categories-chart-month-board .income"
+// );
 
 let monthTitle = document.querySelector(".month-title");
 
@@ -49,7 +85,7 @@ let inputExpenses = document.querySelector(".input-expenses");
 let inputExpensesBtn = document.querySelector(".input-expenses-btn");
 let expensesSaveBtn = document.querySelector(".expenses-save-btn");
 
-// better to create div in js and inject to html, fill data attribute, attach icons. more flexible
+// categories
 let foodItems = document.querySelectorAll('[data-subcategory-item="sub-food"]');
 
 let educationItems = document.querySelectorAll(
@@ -71,53 +107,73 @@ let sportItems = document.querySelectorAll(
 let healthItems = document.querySelectorAll(
   '[data-subcategory-item="sub-health"]'
 );
-let giftsItems = document.querySelectorAll(
-  '[data-subcategory-item="sub-gifts"]'
-);
+// let giftsItems = document.querySelectorAll(
+//   '[data-subcategory-item="sub-gifts"]'
+// );
 let houseItems = document.querySelectorAll(
   '[data-subcategory-item="sub-house"]'
 );
 let billsItems = document.querySelectorAll(
   '[data-subcategory-item="sub-bills"]'
 );
-let furnitureItems = document.querySelectorAll(
-  '[data-subcategory-item="sub-furniture"]'
-);
-let devicesItems = document.querySelectorAll(
-  '[data-subcategory-item="sub-devices"]'
-);
-let petsItems = document.querySelectorAll('[data-subcategory-item="sub-pets"]');
+// let furnitureItems = document.querySelectorAll(
+//   '[data-subcategory-item="sub-furniture"]'
+// );
+// let devicesItems = document.querySelectorAll(
+//   '[data-subcategory-item="sub-devices"]'
+// );
+// let petsItems = document.querySelectorAll('[data-subcategory-item="sub-pets"]');
 let serviceItems = document.querySelectorAll(
   '[data-subcategory-item="sub-service"]'
 );
 let hobbiesItems = document.querySelectorAll(
   '[data-subcategory-item="sub-hobbies"]'
 );
-let workItems = document.querySelectorAll('[data-subcategory-item="sub-work"]');
+// let workItems = document.querySelectorAll('[data-subcategory-item="sub-work"]');
 let otherItems = document.querySelectorAll(
   '[data-subcategory-item="sub-other"]'
 );
 
-// let subuniversity = document.querySelector(
-//   '[data-subcategory-item-name="university"]'
-// );
-// let subbooks = document.querySelector('[data-subcategory-item-name="books"]');
-// let subcourses = document.querySelector(
-//   '[data-subcategory-item-name="courses"]'
-// );
 let currentMonth = "";
 let selectedCategory = "";
 let selectedSubCategory = "";
+let sumTotal = 0;
 
+// balance
+// let balance = 12992;
+// statisticsTitleBalance.innerHTML = "CURRENT BALANCE: " + balance + "\u20AC";
+
+// avg income
+// let income = [
+//   2100, 2100, 2100, 2100, 2300, 2300, 2300, 2300, 2300, 2300, 2300, 2300,
+// ];
+// let avgIncome = function getAvg(income) {
+//   let sum = income.reduce((partialSum, a) => partialSum + a, 0);
+//   let avg = sum / income.length;
+//   return avg.toFixed(2);
+// };
+
+// statisticsTitleAvgIncome.innerHTML =
+//   "AVG INCOME: " + avgIncome(income) + "\u20AC";
+
+// limit
 let currentLimitValue = 0;
-currentLimit.innerHTML = currentLimitValue;
-let overlimit = [];
+if (localStorage.getItem("currentLimitValue") !== null) {
+  let curLimitValue = window.localStorage.getItem("currentLimitValue");
+  console.log(currentLimitValue);
+  currentLimitValue = JSON.parse(curLimitValue);
+}
 
-currentLimitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  currentLimitValue = currentLimitInput.value;
-  currentLimit.innerHTML = currentLimitValue;
-});
+currentLimit.innerHTML = "Current Limit: " + currentLimitValue + "\u20AC";
+
+// total income
+// let totalIncome = function getSum(income) {
+//   let sum = income.reduce((partialSum, a) => partialSum + a, 0);
+//   return sum.toFixed(2);
+// };
+
+// statisticsTitleTotalIncome.innerHTML =
+//   "TOTAL INCOME: " + totalIncome(income) + "\u20AC";
 
 // select 1st category & 1st subcategory on loading, set titles
 function setCategoryOnLoading() {
@@ -134,15 +190,15 @@ function setCategoryOnLoading() {
   subCategoriesTitle.innerHTML = selectedSubCategory;
   categoriesChartMonthTitle.innerHTML = "Total Expenses In " + currentMonth;
   subCategoriesChartMonthTitle.innerHTML = `Expenses On ${selectedCategory} In ${currentMonth}`;
-  subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+  subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
 }
 setCategoryOnLoading();
 
-expenditureTotal.innerHTML = "-" + 340 + " \u20AC";
-incomeTotal.innerHTML = 2100 + " \u20AC";
+// expenditureTotal.innerHTML = "-" + 640 + "\u20AC";
+// incomeTotal.innerHTML = 2100 + "\u20AC";
 
-expenditureSubCat.innerHTML = "-" + 32 + " \u20AC";
-incomeSubCat.innerHTML = 290 + " \u20AC";
+// expenditureSubCat.innerHTML = "-" + 32 + "\u20AC";
+// incomeSubCat.innerHTML = 290 + "\u20AC";
 
 // set current month
 (function setCurrentMonth() {
@@ -219,21 +275,28 @@ monthArrowRight.addEventListener("click", () => {
   }
 });
 
-// init category and subcategory
+currentLimitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  currentLimitValue = currentLimitInput.value;
+  currentLimit.innerHTML = "Current Limit: " + currentLimitValue + "\u20AC";
+  console.log(currentLimitValue);
+  window.localStorage.setItem(
+    "currentLimitValue",
+    JSON.stringify(currentLimitValue)
+  );
+  if (localStorage.getItem("currentLimitValue") !== null) {
+    let currentLimitValue = window.localStorage.getItem("currentLimitValue");
+    currentLimitValue = JSON.parse(currentLimitValue);
+  }
+  currentLimitInput.value = "";
+  startApp(currentMonth);
 
-// set inital category
-// if (selectedCategory.length === 0) {
-//   categoryItems[0].style.border = "solid 2px darkorange";
-//   // foodItems[0].style.border = "solid 2px darkorange";
-//   foodItems.forEach((element) => {
-//     element.style.display = "flex";
-//   });
-// }
+  // currentLimit.innerHTML = "Current Limit: " + currentLimitValue + "\u20AC";
+});
 
-// subCategoryItem.forEach((item) => {
-//   console.log(item);
-//   item.style.display = "flex";
-// });
+clearLimitBtn.addEventListener("click", () => {
+  localStorage.removeItem("currentLimitValue");
+});
 
 // CATEGORY
 categoryItems.forEach((item) => {
@@ -260,12 +323,13 @@ categoryItems.forEach((item) => {
     // hide all sub items
     subCategoryItem.forEach((elem) => {
       elem.style.display = "none";
+      elem.style.border = "none";
     });
     switch (selectedCategory) {
       case "food":
         selectedSubCategory = foodItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         foodItems[0].style.border = "solid 2px darkorange";
         foodItems.forEach((item) => {
           item.style.display = "flex";
@@ -274,7 +338,7 @@ categoryItems.forEach((item) => {
       case "education":
         selectedSubCategory = educationItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         educationItems[0].style.border = "solid 2px darkorange";
         educationItems.forEach((item) => {
           item.style.display = "flex";
@@ -283,8 +347,7 @@ categoryItems.forEach((item) => {
       case "transport":
         selectedSubCategory = transportItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        console.log(selectedSubCategory);
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         transportItems[0].style.border = "solid 2px darkorange";
         transportItems.forEach((item) => {
           item.style.display = "flex";
@@ -293,7 +356,7 @@ categoryItems.forEach((item) => {
       case "travel":
         selectedSubCategory = travelItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         travelItems[0].style.border = "solid 2px darkorange";
         travelItems.forEach((item) => {
           item.style.display = "flex";
@@ -302,7 +365,7 @@ categoryItems.forEach((item) => {
       case "clothes":
         selectedSubCategory = clothesItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         clothesItems[0].style.border = "solid 2px darkorange";
         clothesItems.forEach((item) => {
           item.style.display = "flex";
@@ -311,7 +374,7 @@ categoryItems.forEach((item) => {
       case "sport":
         selectedSubCategory = sportItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         sportItems[0].style.border = "solid 2px darkorange";
         sportItems.forEach((item) => {
           item.style.display = "flex";
@@ -320,25 +383,16 @@ categoryItems.forEach((item) => {
       case "health":
         selectedSubCategory = healthItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         healthItems[0].style.border = "solid 2px darkorange";
         healthItems.forEach((item) => {
-          item.style.display = "flex";
-        });
-        break;
-      case "gifts":
-        selectedSubCategory = giftsItems[0].dataset.subcategoryItemName;
-        subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
-        giftsItems[0].style.border = "solid 2px darkorange";
-        giftsItems.forEach((item) => {
           item.style.display = "flex";
         });
         break;
       case "house":
         selectedSubCategory = houseItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         houseItems[0].style.border = "solid 2px darkorange";
         houseItems.forEach((item) => {
           item.style.display = "flex";
@@ -347,43 +401,16 @@ categoryItems.forEach((item) => {
       case "bills":
         selectedSubCategory = billsItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         billsItems[0].style.border = "solid 2px darkorange";
         billsItems.forEach((item) => {
-          item.style.display = "flex";
-        });
-        break;
-      case "furniture":
-        selectedSubCategory = furnitureItems[0].dataset.subcategoryItemName;
-        subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
-        furnitureItems[0].style.border = "solid 2px darkorange";
-        furnitureItems.forEach((item) => {
-          item.style.display = "flex";
-        });
-        break;
-      case "devices":
-        selectedSubCategory = devicesItems[0].dataset.subcategoryItemName;
-        subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
-        devicesItems[0].style.border = "solid 2px darkorange";
-        devicesItems.forEach((item) => {
-          item.style.display = "flex";
-        });
-        break;
-      case "pets":
-        selectedSubCategory = petsItems[0].dataset.subcategoryItemName;
-        subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
-        petsItems[0].style.border = "solid 2px darkorange";
-        petsItems.forEach((item) => {
           item.style.display = "flex";
         });
         break;
       case "service":
         selectedSubCategory = serviceItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         serviceItems[0].style.border = "solid 2px darkorange";
         serviceItems.forEach((item) => {
           item.style.display = "flex";
@@ -392,25 +419,16 @@ categoryItems.forEach((item) => {
       case "hobbies":
         selectedSubCategory = hobbiesItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         hobbiesItems[0].style.border = "solid 2px darkorange";
         hobbiesItems.forEach((item) => {
-          item.style.display = "flex";
-        });
-        break;
-      case "work":
-        selectedSubCategory = workItems[0].dataset.subcategoryItemName;
-        subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
-        workItems[0].style.border = "solid 2px darkorange";
-        workItems.forEach((item) => {
           item.style.display = "flex";
         });
         break;
       case "other":
         selectedSubCategory = otherItems[0].dataset.subcategoryItemName;
         subCategoriesTitle.innerHTML = selectedSubCategory;
-        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedSubCategory} Per Year`;
+        subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
         otherItems[0].style.border = "solid 2px darkorange";
         otherItems.forEach((item) => {
           item.style.display = "flex";
@@ -433,21 +451,28 @@ subCategoryItem.forEach((item) => {
     // console.log(e.target.dataset.subcategoryItemName);
     selectedSubCategory = e.target.dataset.subcategoryItemName;
     subCategoriesTitle.innerHTML = selectedSubCategory;
-    subCategoriesChartYearTitle.innerHTML = `Expenses on ${selectedSubCategory} Per Year`;
+    subCategoriesChartYearTitle.innerHTML = `Expenses on ${selectedCategory} Per Year`;
   });
 });
 
 let dataSchema = {
   January: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
-    education: { university: 20, books: 30, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
+    education: { university: 0, books: 0, courses: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -455,10 +480,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -467,17 +491,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   February: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
-    education: { university: 20, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 50, mortgage: 20 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
+    education: { university: 0, books: 0, courses: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -485,10 +517,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -497,17 +528,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   March: {
-    food: { alcohol: 5, coffee: 0, burger: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
     education: { university: 0, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -515,10 +554,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -527,17 +565,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   April: {
-    food: { alcohol: 0, coffee: 0, burger: 80 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
     education: { university: 0, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -545,10 +591,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -557,17 +602,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   May: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
-    education: { university: 0, books: 20, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
+    education: { university: 0, books: 0, courses: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -575,10 +628,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -587,17 +639,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   June: {
-    food: { alcohol: 15, coffee: 0, burger: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
     education: { university: 0, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -605,10 +665,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -617,17 +676,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   July: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
     education: { university: 0, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 34, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -635,10 +702,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -647,17 +713,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   August: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
-    education: { university: 0, books: 0, courses: 20 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
+    education: { university: 0, books: 0, courses: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -665,10 +739,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -677,17 +750,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   September: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
     education: { university: 0, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 40 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -695,10 +776,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -707,17 +787,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   October: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
-    education: { university: 0, books: 0, courses: 30 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
+    education: { university: 0, books: 0, courses: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -725,10 +813,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -737,17 +824,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   November: {
-    food: { alcohol: 5, coffee: 10, burger: 0 },
-    education: { university: 30, books: 20, courses: 50 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 0, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
+    education: { university: 0, books: 0, courses: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -755,10 +850,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -767,17 +861,25 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
   December: {
-    food: { alcohol: 0, coffee: 0, burger: 0 },
+    food: {
+      alcohol: 0,
+      coffee: 0,
+      burger: 0,
+      meat: 0,
+      vegetables: 0,
+      fish: 0,
+      sweets: 0,
+    },
     education: { university: 0, books: 0, courses: 0 },
-    transport: { bus: 0, car: 0 },
-    travel: { plane: 0, car: 0 },
-    clothes: { socks: 0, "t-shirts": 0, mittens: 0 },
-    sport: { equipment: 0, gym: 0 },
-    health: { tooth: 0, syringe: 0, virus: 0, bacterium: 0, bone: 0, pills: 0 },
-    gifts: { gifts: 30, cash: 0 },
-    house: { rent: 0, mortgage: 0 },
+    transport: { motorcycle: 0, bus: 0, taxi: 0, car: 0 },
+    travel: { plane: 0, hotel: 0 },
+    clothes: { outerwear: 0, accessories: 0 },
+    sport: { gym: 0 },
+    health: { dental: 0, spa: 0, pills: 0 },
+    house: { rent: 0, mortgage: 0, furniture: 0, electronics: 0 },
     bills: {
       electricity: 0,
       gas: 0,
@@ -785,10 +887,9 @@ let dataSchema = {
       trash: 0,
       wifi: 0,
       phone: 0,
+      heating: 0,
     },
-    furniture: { chair: 0, bed: 0 },
-    pets: { cat: 0, dog: 0 },
-    service: { wrench: 0 },
+    service: { repair: 0 },
     hobbies: {
       volleyball: 0,
       snowboarding: 0,
@@ -797,6 +898,7 @@ let dataSchema = {
       skating: 0,
       biking: 0,
     },
+    other: { gift: 0, pets: 0, cash: 0 },
   },
 };
 
@@ -820,224 +922,41 @@ let labelValues4;
 let chartData4;
 let configuration4;
 
+// let noExpensesLabel;
+// let noExpensesValue;
+let backgroundColorChart3 = [
+  "#003f5c",
+  "#2f4b7c",
+  "#665191",
+  "#a05195",
+  "#d45087",
+  "#f95d6a",
+  "#ff7c43",
+  "#ffa600",
+];
+
+let backgroundColorChart1 = [
+  "#003f5c",
+  "#2f4b7c",
+  "#665191",
+  "#a05195",
+  "#d45087",
+  "#f95d6a",
+  "#ff7c43",
+  "#ffa600",
+];
+
 // input values
 inputExpensesBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (selectedCategory) {
     let tempCat = dataSchema[currentMonth][selectedCategory];
     tempCat[selectedSubCategory] += Number(inputExpenses.value);
+
+    window.localStorage.setItem("dataSchema", JSON.stringify(dataSchema));
+    inputExpenses.value = "";
   }
   startApp(currentMonth);
-  // // CATEGORY EXPENSES PER MONTH
-  // labelValues1 = getChartValuesFirst(dataSchema[currentMonth]);
-
-  // chartData1 = {
-  //   labels: labelValues1[0],
-  //   datasets: [
-  //     {
-  //       label: "some label",
-  //       data: labelValues1[1],
-  //       backgroundColor: [
-  //         "#003f5c",
-  //         "#2f4b7c",
-  //         "#665191",
-  //         "#a05195",
-  //         "#d45087",
-  //         "#f95d6a",
-  //         "#ff7c43",
-  //         "#ffa600",
-  //       ],
-  //       borderColor: [
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //       ],
-  //       borderWidth: 5,
-  //     },
-  //   ],
-  // };
-
-  // configuration1 = {
-  //   type: "doughnut",
-  //   data: chartData1,
-  //   options: {
-  //     scales: {
-  //       ticks: {
-  //         display: false,
-  //       },
-  //     },
-  //   },
-  // };
-
-  // // CATEGORY EXPENSES PER YEAR
-  // labelValues2 = getChartValuesSecond(dataSchema);
-
-  // chartData2 = {
-  //   labels: labelValues2[0],
-  //   datasets: [
-  //     {
-  //       label: "some label",
-  //       data: labelValues2[1],
-  //       backgroundColor: [
-  //         "#003f5c",
-  //         "#2f4b7c",
-  //         "#665191",
-  //         "#a05195",
-  //         "#d45087",
-  //         "#f95d6a",
-  //         "#ff7c43",
-  //         "#ffa600",
-  //         "#d45087",
-  //         "#f95d6a",
-  //         "#ff7c43",
-  //         "#ffa600",
-  //       ],
-  //       borderColor: [
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //       ],
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
-
-  // configuration2 = {
-  //   type: "bar",
-  //   data: chartData2,
-  //   options: {
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //       },
-  //     },
-  //   },
-  // };
-
-  // // SUBCATEGORY EXPENSES PER MONTH
-  // labelValues3 = getChartValuesThird(
-  //   dataSchema[currentMonth][selectedCategory]
-  // );
-
-  // chartData3 = {
-  //   labels: labelValues3[0],
-  //   datasets: [
-  //     {
-  //       label: "some label",
-  //       data: labelValues3[1],
-  //       backgroundColor: [
-  //         "#003f5c",
-  //         "#2f4b7c",
-  //         "#665191",
-  //         "#a05195",
-  //         "#d45087",
-  //         "#f95d6a",
-  //         "#ff7c43",
-  //         "#ffa600",
-  //       ],
-  //       borderColor: [
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //       ],
-  //       borderWidth: 5,
-  //     },
-  //   ],
-  // };
-
-  // configuration3 = {
-  //   type: "doughnut",
-  //   data: chartData3,
-  //   options: {
-  //     scales: {
-  //       ticks: {
-  //         display: false,
-  //       },
-  //     },
-  //   },
-  // };
-
-  // // SUBCATEGORY EXPENSES PER YEAR
-  // labelValues4 = getChartValuesFourth(selectedCategory, dataSchema);
-
-  // chartData4 = {
-  //   labels: labelValues4[0],
-  //   datasets: [
-  //     {
-  //       label: "some label",
-  //       data: labelValues4[1],
-  //       backgroundColor: [
-  //         "#003f5c",
-  //         "#2f4b7c",
-  //         "#665191",
-  //         "#a05195",
-  //         "#d45087",
-  //         "#f95d6a",
-  //         "#ff7c43",
-  //         "#ffa600",
-  //         "#d45087",
-  //         "#f95d6a",
-  //         "#ff7c43",
-  //         "#ffa600",
-  //       ],
-  //       borderColor: [
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //         "#252526",
-  //       ],
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // };
-
-  // configuration4 = {
-  //   type: "bar",
-  //   data: chartData4,
-  //   options: {
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //       },
-  //     },
-  //   },
-  // };
-
-  // // catMonthChart
-  // renderChartFirst();
-  // // catYearChart
-  // renderChartSecond();
-  // // subCatMonthChart
-  // renderChartThird();
-  // // subCatYearChart
-  // renderChartFourth();
 });
 
 // selectedCategory = "food";
@@ -1046,6 +965,16 @@ function startApp(currentMonth) {
   // CATEGORY EXPENSES PER MONTH
   categoriesChartMonthTitle.innerHTML = "Total Expenses In " + currentMonth;
   subCategoriesChartMonthTitle.innerHTML = `Expenses On ${selectedCategory} In ${currentMonth}`;
+
+  if (localStorage.getItem("dataSchema") !== null) {
+    let mydataSchema = window.localStorage.getItem("dataSchema");
+    dataSchema = JSON.parse(mydataSchema);
+  }
+  // let mydataSchema = window.localStorage.getItem("dataSchema");
+
+  // console.log(mydataSchema);
+  // console.log("dataSchema: ", JSON.parse(mydataSchema));
+
   labelValues1 = getChartValuesFirst(dataSchema[currentMonth]);
 
   chartData1 = {
@@ -1054,26 +983,8 @@ function startApp(currentMonth) {
       {
         label: "",
         data: labelValues1[1],
-        backgroundColor: [
-          "#003f5c",
-          "#2f4b7c",
-          "#665191",
-          "#a05195",
-          "#d45087",
-          "#f95d6a",
-          "#ff7c43",
-          "#ffa600",
-        ],
-        borderColor: [
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-        ],
+        backgroundColor: backgroundColorChart1,
+        borderColor: ["#252526"],
         borderWidth: 5,
       },
     ],
@@ -1098,47 +1009,20 @@ function startApp(currentMonth) {
 
   // CATEGORY EXPENSES PER YEAR
 
-  labelValues2 = getChartValuesSecond(dataSchema);
-
+  labelValues2 = getChartValuesSecond(dataSchema, currentLimitValue);
   chartData2 = {
     labels: labelValues2[0],
     datasets: [
       {
         label: "",
         data: labelValues2[1],
-        backgroundColor: [
-          "#003f5c",
-          "#2f4b7c",
-          "#665191",
-          "#a05195",
-          "#d45087",
-          "#f95d6a",
-          "#ff7c43",
-          "#ffa600",
-          "#d45087",
-          "#f95d6a",
-          "#ff7c43",
-          "#ffa600",
-        ],
-        borderColor: [
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-        ],
+        backgroundColor: ["#003f5c"],
+        borderColor: ["#252526"],
         borderWidth: 1,
       },
       {
         label: "",
-        data: [20, 30, 32, 11, 43, 30, 20, 33, 44, 35, 56, 23],
+        data: labelValues2[2],
         backgroundColor: ["#d45087"],
         borderColor: ["#252526"],
         borderWidth: 1,
@@ -1161,6 +1045,24 @@ function startApp(currentMonth) {
         legend: {
           display: false,
         },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              let label = context.dataset.label || "";
+
+              if (label) {
+                label += ": ";
+              }
+              if (context.parsed.y !== null) {
+                label += new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "EUR",
+                }).format(context.parsed.y);
+              }
+              return label;
+            },
+          },
+        },
       },
     },
   };
@@ -1176,26 +1078,8 @@ function startApp(currentMonth) {
       {
         label: "",
         data: labelValues3[1],
-        backgroundColor: [
-          "#003f5c",
-          "#2f4b7c",
-          "#665191",
-          "#a05195",
-          "#d45087",
-          "#f95d6a",
-          "#ff7c43",
-          "#ffa600",
-        ],
-        borderColor: [
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-        ],
+        backgroundColor: backgroundColorChart3,
+        borderColor: ["#252526"],
         borderWidth: 5,
       },
     ],
@@ -1213,6 +1097,7 @@ function startApp(currentMonth) {
       plugins: {
         legend: {
           display: false,
+          position: "top",
         },
       },
     },
@@ -1227,34 +1112,8 @@ function startApp(currentMonth) {
       {
         label: "",
         data: labelValues4[1],
-        backgroundColor: [
-          "#003f5c",
-          "#2f4b7c",
-          "#665191",
-          "#a05195",
-          "#d45087",
-          "#f95d6a",
-          "#ff7c43",
-          "#ffa600",
-          "#d45087",
-          "#f95d6a",
-          "#ff7c43",
-          "#ffa600",
-        ],
-        borderColor: [
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-          "#252526",
-        ],
+        backgroundColor: ["#003f5c"],
+        borderColor: ["#252526"],
         borderWidth: 1,
       },
     ],
@@ -1272,6 +1131,24 @@ function startApp(currentMonth) {
       plugins: {
         legend: {
           display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              let label = context.dataset.label || "";
+
+              if (label) {
+                label += ": ";
+              }
+              if (context.parsed.y !== null) {
+                label += new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "EUR",
+                }).format(context.parsed.y);
+              }
+              return label;
+            },
+          },
         },
       },
     },
@@ -1301,13 +1178,41 @@ function getChartValuesFirst(data) {
     }
     dataValues.push(categoryExp);
   }
+
+  let sum = dataValues.reduce((partialSum, a) => partialSum + a, 0);
+  if (sum === 0) {
+    labelsValues = ["No Expenses"];
+    // dataValues = [1];
+    backgroundColorChart1 = ["rgba(55,55,55,0.3)"];
+  } else {
+    backgroundColorChart1 = [
+      "#003f5c",
+      "#2f4b7c",
+      "#665191",
+      "#a05195",
+      "#d45087",
+      "#f95d6a",
+      "#ff7c43",
+      "#ffa600",
+    ];
+  }
   return [labelsValues, dataValues];
 }
 
-// second chart
-function getChartValuesSecond(data) {
+// expenses on category in month (second chart)
+function getChartValuesSecond(data, limit) {
+  // let sum = 0;
+  // let avgExp = 0;
+  // let avgSavings = 0;
   let labelsValues = [];
   let dataValues = [];
+  let limitValues = [];
+  // let newlimit = limit;
+
+  let maxValue = 0;
+  let mostMoneySpentOn = "";
+  let mostMoneySpentOnValue = 0;
+  let mostMoneySpentIn = "";
   // let dataValuesPerMonth = [];
 
   // month & category {}
@@ -1319,51 +1224,125 @@ function getChartValuesSecond(data) {
     let catTotal = 0;
     for (const [key2, value2] of Object.entries(value1)) {
       let subCatTotal = 0;
+
       for (const [key3, value3] of Object.entries(value2)) {
         subCatTotal += Number(value3);
       }
+
       catTotal += Number(subCatTotal);
+
+      // if (key1 === currentMonth) {
+      //   // console.log(key1);
+      //   expenditureTotal.innerHTML = "-" + catTotal + "\u20AC";
+      // }
+
+      if (mostMoneySpentOnValue < subCatTotal) {
+        mostMoneySpentOnValue = subCatTotal;
+        mostMoneySpentOn = key2;
+      }
+      // console.log("spent amount", subCatTotal);
+      // find category with most expenses
+      if (catTotal > maxValue) {
+        maxValue = catTotal;
+        // mostMoneySpentOn = key2;
+        mostMoneySpentIn = key1;
+      }
+    }
+    if (key1 === currentMonth) {
+      console.log(key1);
+      console.log(catTotal);
+      expenditureTotal.innerHTML = "-" + catTotal + "\u20AC";
     }
 
-    dataValues.push(catTotal);
+    // find month with most expenses
+
+    if (catTotal <= limit) {
+      dataValues.push(catTotal);
+      limitValues.push(0);
+    } else if (catTotal > limit) {
+      dataValues.push(limit);
+      limitValues.push(catTotal - limit);
+    }
   }
-  return [labelsValues, dataValues];
+  // sum += dataValues.reduce((partialSum, a) => partialSum + a, 0);
+  // sum += limitValues.reduce((partialSum, a) => partialSum + a, 0);
+  // sumTotal = sum;
+  // avgExp = sum / dataValues.length;
+
+  // avgSavings = avgIncome(income) - avgExp;
+
+  // statisticsTitleTotalExp.innerHTML = "Total Expenses: " + sumTotal + "\u20AC";
+
+  // statisticsTitleAvgExp.innerHTML =
+  //   "AVG Expenses Per Month: " + avgExp.toFixed(2) + "\u20AC";
+  // statisticsTitleAvgSavings.innerHTML =
+  //   "AVG SAVINGS: " + avgSavings.toFixed(2) + "\u20AC";
+
+  statisticsTitleMostSpentOn.innerHTML =
+    mostMoneySpentOn + " - " + mostMoneySpentOnValue + "\u20AC";
+
+  statisticsTitleMostSpentIn.innerHTML =
+    mostMoneySpentIn + " - " + maxValue + "\u20AC";
+
+  // expenditureTotal.innerHTML = limit;
+  // incomeTotal.innerHTML = maxValue;
+
+  return [labelsValues, dataValues, limitValues];
 }
 
-// third chart
+// expenses on category in month (third chart)
 function getChartValuesThird(data) {
   let labelsValues = [];
   let dataValues = [];
   for (const [key, value] of Object.entries(data)) {
     labelsValues.push(key);
-    dataValues.push(value);
+    dataValues.push(Number(value));
   }
+  // if no expenses occurred in current month then create placeholder grey chart, else use normal color scheme
+  let sum = dataValues.reduce((partialSum, a) => partialSum + a, 0);
+  if (sum === 0) {
+    labelsValues = ["No Expenses"];
+    dataValues = [1];
+    backgroundColorChart3 = ["rgba(55,55,55,0.3)"];
+  } else {
+    backgroundColorChart3 = [
+      "#003f5c",
+      "#2f4b7c",
+      "#665191",
+      "#a05195",
+      "#d45087",
+      "#f95d6a",
+      "#ff7c43",
+      "#ffa600",
+    ];
+  }
+
   return [labelsValues, dataValues];
 }
 
-// fourth chart
+// expenses on category per year (fourth chart)
 function getChartValuesFourth(selectedCat, data) {
   let labelsValues = [];
   let dataValues = [];
-  // let dataValuesPerMonth = [];
 
   for (const [key1, value1] of Object.entries(data)) {
     labelsValues.push(key1);
-    // dataValuesPerMonth.push(value1);
 
     let subCatTotal = 0;
+
     for (const [key2, value2] of Object.entries(value1[selectedCat])) {
       subCatTotal += Number(value2);
     }
     dataValues.push(subCatTotal);
   }
+  let sum = dataValues.reduce((partialSum, a) => partialSum + a, 0);
+  expenditureSubCat.innerHTML = "-" + sum + "\u20AC";
+  // let sum = dataValues.reduce((a, b) => a + b, 0);
 
   return [labelsValues, dataValues];
 }
 
-//////////////////////////////
-// func deletes old chart and creates new one (render)
-
+// rerender charts
 function renderChartFirst() {
   if (catMonthChart !== undefined) {
     catMonthChart.destroy();
@@ -1424,6 +1403,31 @@ function renderChartFourth() {
   }
 }
 
+// show hide left-side menu
+// sideMenu.addEventListener("click", () => {
+//   sideMenu.classList.toggle("side-menu-visible");
+// });
+
+// render charts after window resize
+function resizedwindow() {
+  startApp(currentMonth);
+  console.log("Window resized!");
+}
+let doit;
+window.onresize = () => {
+  clearTimeout(doit);
+  doit = setTimeout(resizedwindow, 300);
+};
+
+// ask confirmation to delete all data
+clearAllDataBtn.addEventListener("click", () => {
+  if (confirm("Are you sure you want to erase all data?")) {
+    localStorage.removeItem("dataSchema");
+  } else {
+    return;
+  }
+});
+
 // function renderChart(name_obj, name_str, config) {
 //   if (this.name_obj !== undefined) {
 //     this.name_obj.destroy();
@@ -1450,66 +1454,6 @@ function renderChartFourth() {
 
 // const square = new Rectangle(10, 10);
 // square.area;
-
-// function getChartValues(data) {
-//   // new var
-//   // go for output
-//   let catExpMonthLabels = [];
-//   let catExpMonthValues = [];
-//   let catExpYearLabels = []; // months
-//   let catExpYearValues = [];
-//   let subCatExpMonthLabels = [];
-//   let subCatExpMonthValues = [];
-//   let subCatExpYearLabels = []; // months
-//   let subCatExpYearValues = [];
-//   // temp var cat {}
-//   let dataObjectPerMonth = [];
-
-//   // month & category {}
-//   for (const [key1, value1] of Object.entries(data)) {
-//     // get months
-//     catExpYearLabels.push(key1);
-//     // get months
-//     subCatExpYearLabels.push(key1);
-//     dataObjectPerMonth.push(value1);
-
-//     let categories = [];
-//     let setCat = [...new Set(categories)];
-//     // subcategory
-//     let totalCat = 0;
-//     for (const [key2, value2] of Object.entries(value1)) {
-//       // console.log(key2);
-//       categories.push(key2);
-//       let totalSubCat = 0;
-//       for (const [key3, value3] of Object.entries(value2)) {
-//         totalSubCat += Number(value3);
-//       }
-//       totalCat += Number(totalSubCat);
-//     }
-//     // let setCategories = [...new Set(categories)];
-//     catExpMonthLabels.push(setCat);
-//     catExpMonthValues.push(totalCat);
-//   }
-//   return console.log(catExpMonthLabels);
-// }
-
-// var a = [1, 1, 2];
-
-// let b = [...new Set(a)];
-
-// console.log(b);
-// c = new Set(a);
-// console.log(...c);
-
-// let b = window.localStorage.setItem("dataSchema", JSON.stringify(dataSchema));
-// console.log(b);
-// let a = window.localStorage.getItem(dataSchema);
-// console.log("dataSchema: ", JSON.parse(a));
-
-// Remove Data from Local Storage
-// localStorage.removeItem(key);
-// Remove All (Clear Local Storage)
-// localStorage.clear();
 
 // outputfile
 // const link = document.querySelector(".mylink");

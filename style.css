@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #1e1e1e;
+  height: 100vh;
+  width: 100vw;
+}
+
 /* .board {
   margin: 0 auto;
   max-width: 500px;
@@ -24,28 +30,45 @@
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
 } */
+/* .side-menu {
+  min-height: 100vh;
+  width: 20px;
+  background-color: #6b6b6d;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.side-menu-visible {
+  min-height: 100vh;
+  width: 330px;
+  background-color: #252526;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-right: solid 20px #6b6b6d;
+} */
 
 .dashboard {
   background-color: #1e1e1e;
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: 2fr 2fr 2fr 4fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "categories sub-categories categories-chart-month categories-chart-year"
-    "categories sub-categories categories-chart-month categories-chart-year"
-    "data calculation sub-categories-chart-month sub-categories-chart-year"
     "data calculation sub-categories-chart-month sub-categories-chart-year";
   /* grid-row-gap: 20px;
   grid-column-gap: 20px; */
-  padding: 10px;
+  /* padding: 10px; */
 }
 /*need to add*/
 .calculation {
   background-color: #252526;
   grid-area: calculation;
   margin: 10px;
+  padding: 20px;
 }
 /*need to add*/
 .data {
@@ -86,6 +109,9 @@
   background-color: #252526;
   grid-area: sub-categories-chart-year;
   margin: 10px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
 }
 
 .date-wrapper {
@@ -108,7 +134,7 @@
   /* color: darkorange; */
   color: #656565;
   margin: 10px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-transform: capitalize;
   height: 1.2;
 }
@@ -163,63 +189,6 @@
   display: none;
 }
 
-/* .fa-utensils,
-.fa-graduation-cap,
-.fa-car,
-.fa-plane,
-.fa-shirt,
-.fa-dumbbell,
-.fa-kit-medical,
-.fa-gift,
-.fa-house,
-.fa-faucet-drip,
-.fa-couch,
-.fa-desktop,
-.fa-dog,
-.fa-screwdriver-wrench,
-.fa-heart,
-.fa-palette,
-.fa-table-tennis-paddle-ball,
-.fa-briefcase,
-.fa-circle-question {
-  color: aquamarine;
-  font-size: 2.5rem;
-  pointer-events: none;
-} */
-
-/* .fa-tooth,
-.fa-head-side-cough,
-.fa-head-side-virus,
-.fa-lungs-virus,
-.fa-syringe,
-.fa-virus,
-.fa-bacterium,
-.fa-bone,
-.fa-glasses,
-.fa-pills,
-.fa-champagne-glasses,
-.fa-mug-hot,
-.fa-burger,
-.fa-carrot,
-.fa-building-columns,
-.fa-book,
-.fa-user-graduate,
-.fa-bicycle,
-.fa-motorcycle,
-.fa-bus,
-.fa-van-shuttle,
-.fa-taxi,
-.fa-car,
-.fa-train-tram,
-.fa-train-subway,
-.fa-plane,
-.fa-train,
-.fa-ship {
-  color: aqua;
-  font-size: 2.5rem;
-  pointer-events: none;
-} */
-
 .categories-chart-month-board,
 .sub-categories-chart-month-board {
   position: relative;
@@ -261,17 +230,17 @@
   font-size: 2rem;
   left: 50%;
   top: 50%;
-  transform: translateX(-50%) translateY(-100%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
-.income {
+/* .income {
   position: absolute;
   color: rgb(51, 206, 77);
   font-size: 2rem;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(0%);
-}
+} */
 
 .input-expenses-form {
   justify-content: center;
@@ -280,8 +249,8 @@
 }
 
 .input-expenses {
-  height: 3rem;
-  width: 200px;
+  height: 2rem;
+  max-width: 200px;
   margin: 10px;
   border-radius: 5px;
 }
@@ -289,13 +258,13 @@
 .input-expenses-btn {
   margin: 10px;
   display: block;
-  border: solid 2px rgba(97, 220, 2, 0.797);
+  border: solid 2px darkorange;
   border-radius: 5px;
   background-color: #252526;
-  width: 3rem;
-  height: 3rem;
-  font-size: 2rem;
-  color: rgba(97, 220, 2, 0.797);
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  color: darkorange;
 }
 
 .expenses-save-btn {
@@ -304,27 +273,45 @@
   border: solid 2px darkorange;
   border-radius: 5px;
   background-color: #252526;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   font-size: 2rem;
   color: darkorange;
+}
+
+.clear-all-data-btn {
+  margin: 10px;
+  display: block;
+  border: solid 2px rgb(110, 27, 27);
+  border-radius: 5px;
+  background-color: #252526;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  color: rgb(110, 27, 27);
 }
 
 /*limits*/
 .limits {
   justify-content: center;
   margin-top: 10px;
-  display: flex;
+  /* display: flex; */
 }
 
 .current-limit {
   color: #fff;
   font-size: 1.5rem;
+  text-align: center;
+  color: #656565;
+}
+.limit-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .current-limit-input {
-  height: 3rem;
-  width: 200px;
+  height: 2rem;
+  max-width: 200px;
   margin: 10px;
   border-radius: 5px;
 }
@@ -334,8 +321,71 @@
   border: solid 2px darkorange;
   border-radius: 5px;
   background-color: #252526;
-  width: 3rem;
-  height: 3rem;
-  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
   color: darkorange;
 }
+
+.clear-limit-btn {
+  margin: 10px;
+  display: block;
+  border: solid 2px rgb(110, 27, 27);
+  border-radius: 5px;
+  background-color: #252526;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  color: rgb(110, 27, 27);
+}
+
+.statistics-title-total-exp,
+.statistics-title-avg-exp,
+.statistics-title-avg-income,
+.statistics-title-total-income,
+.statistics-title-balance,
+.statistics-title-avg-savings,
+.statistics-title-most-spent-on,
+.statistics-title-most-spent-in {
+  text-align: center;
+  /* color: darkorange; */
+  color: darkorange;
+  margin: 10px;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.statistics-title {
+  text-align: center;
+  /* color: darkorange; */
+  color: #656565;
+  margin: 10px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+/* MEDIA*/
+/* @media screen and (max-width: 992px) {
+  body {
+    background-color: blue;
+  } */
+/* .dashboard {
+    background-color: #1e1e1e;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "categories sub-categories categories-chart-month"
+      "data calculation categories-chart-year"
+      "data calculation sub-categories-chart-month";
+  } */
+/* } */
+
+/* On screens that are 600px or less, set the background color to olive */
+/* @media screen and (max-width: 600px) {
+  body {
+    background-color: olive;
+  }
+} */
