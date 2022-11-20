@@ -10,45 +10,6 @@ body {
   width: 100vw;
 }
 
-/* .board {
-  margin: 0 auto;
-  max-width: 500px;
-  max-height: 500px;
-  background-color: rgb(218, 218, 218);
-  position: relative;
-}
-
-.add-expenses-btn {
-  padding: 6px 10px;
-  background-color: rgb(109, 234, 123);
-}
-
-.balance {
-  position: absolute;
-  color: chocolate;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-} */
-/* .side-menu {
-  min-height: 100vh;
-  width: 20px;
-  background-color: #6b6b6d;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.side-menu-visible {
-  min-height: 100vh;
-  width: 330px;
-  background-color: #252526;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-right: solid 20px #6b6b6d;
-} */
-
 .dashboard {
   background-color: #1e1e1e;
   height: 100%;
@@ -59,18 +20,15 @@ body {
   grid-template-areas:
     "categories sub-categories categories-chart-month categories-chart-year"
     "data calculation sub-categories-chart-month sub-categories-chart-year";
-  /* grid-row-gap: 20px;
-  grid-column-gap: 20px; */
-  /* padding: 10px; */
 }
-/*need to add*/
+
 .calculation {
   background-color: #252526;
   grid-area: calculation;
   margin: 10px;
-  padding: 20px;
+  /* padding: 20px; */
 }
-/*need to add*/
+
 .data {
   background-color: #252526;
   grid-area: data;
@@ -96,22 +54,18 @@ body {
   background-color: #252526;
   grid-area: sub-categories;
   margin: 10px;
-  /* display: flex;
-  flex-direction: column; */
-  /* justify-content: space-evenly; */
 }
+
 .sub-categories-chart-month {
   background-color: #252526;
   grid-area: sub-categories-chart-month;
   margin: 10px;
 }
+
 .sub-categories-chart-year {
   background-color: #252526;
   grid-area: sub-categories-chart-year;
   margin: 10px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
 }
 
 .date-wrapper {
@@ -131,12 +85,10 @@ body {
 .sub-categories-chart-month-title,
 .sub-categories-chart-year-title {
   text-align: center;
-  /* color: darkorange; */
   color: #656565;
   margin: 10px;
   font-size: 1.2rem;
   text-transform: capitalize;
-  height: 1.2;
 }
 
 .month-arrow-left,
@@ -154,7 +106,6 @@ body {
   flex-wrap: wrap;
   padding: 3px;
   justify-content: center;
-  /* justify-content: space-evenly; */
 }
 
 .sub-categories-items {
@@ -162,7 +113,6 @@ body {
   flex-wrap: wrap;
   padding: 3px;
   justify-content: center;
-  /* justify-content: flex-start; */
 }
 
 .category-item {
@@ -204,26 +154,16 @@ body {
 
 .sub-category-item > i {
   color: #656565;
-  /* font-size: 2.5rem; */
   font-size: 1.5rem;
   pointer-events: none;
   text-shadow: 1px 1px 2px darkorange;
 }
 
-/* /* div[data-subcategory-item="sub-health"] {
-  display: none;
-} */
-
-/* div[data-subcategory-item="sub-food"] {
-  display: flex;
-} */
-#catMonthChart {
-  margin: 20px;
-}
-
+#catMonthChart,
 #subCatMonthChart {
   margin: 20px;
 }
+
 .expenditure {
   position: absolute;
   color: rgba(255, 99, 132, 1);
@@ -232,15 +172,6 @@ body {
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-
-/* .income {
-  position: absolute;
-  color: rgb(51, 206, 77);
-  font-size: 2rem;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(0%);
-} */
 
 .input-expenses-form {
   justify-content: center;
@@ -300,10 +231,11 @@ body {
 
 .current-limit {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
   color: #656565;
 }
+
 .limit-wrapper {
   display: flex;
   justify-content: center;
@@ -315,6 +247,7 @@ body {
   margin: 10px;
   border-radius: 5px;
 }
+
 .current-limit-btn {
   margin: 10px;
   display: block;
@@ -339,29 +272,21 @@ body {
   color: rgb(110, 27, 27);
 }
 
-.statistics-title-total-exp,
-.statistics-title-avg-exp,
-.statistics-title-avg-income,
-.statistics-title-total-income,
-.statistics-title-balance,
-.statistics-title-avg-savings,
 .statistics-title-most-spent-on,
 .statistics-title-most-spent-in {
   text-align: center;
-  /* color: darkorange; */
   color: darkorange;
-  margin: 10px;
-  font-size: 2rem;
-  text-transform: uppercase;
+  margin: 10px 0 10px 0;
+  font-size: 1.2rem;
+  text-transform: capitalize;
 }
 
 .statistics-title {
   text-align: center;
-  /* color: darkorange; */
   color: #656565;
-  margin: 10px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
+  margin: 10px 0 10px 0;
+  font-size: 1.2rem;
+  text-transform: capitalize;
 }
 
 /* MEDIA*/

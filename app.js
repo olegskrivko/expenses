@@ -11,15 +11,6 @@ let currentLimit = document.querySelector(".current-limit");
 let currentLimitInput = document.querySelector(".current-limit-input");
 let currentLimitBtn = document.querySelector(".current-limit-btn");
 
-// side menu
-// let sideMenu = document.querySelector(".side-menu");
-
-// let statisticsTitleTotalExp = document.querySelector(
-//   ".statistics-title-total-exp"
-// );
-
-// let statisticsTitleAvgExp = document.querySelector(".statistics-title-avg-exp");
-
 let clearLimitBtn = document.querySelector(".clear-limit-btn");
 
 let statisticsTitleMostSpentOn = document.querySelector(
@@ -47,24 +38,6 @@ let monthArrowRight = document.querySelector(".month-arrow-right");
 let expenditureTotal = document.querySelector(
   ".categories-chart-month-board .expenditure"
 );
-// let incomeTotal = document.querySelector(
-//   ".categories-chart-month-board .income"
-// );
-
-// let statisticsTitleAvgIncome = document.querySelector(
-//   ".statistics-title-avg-income"
-// );
-// let statisticsTitleTotalIncome = document.querySelector(
-//   ".statistics-title-total-income"
-// );
-
-// let statisticsTitleBalance = document.querySelector(
-//   ".statistics-title-balance"
-// );
-
-// let statisticsTitleAvgSavings = document.querySelector(
-//   ".statistics-title-avg-savings"
-// );
 
 let statisticsTitleMostSpentIn = document.querySelector(
   ".statistics-title-most-spent-in"
@@ -73,9 +46,6 @@ let statisticsTitleMostSpentIn = document.querySelector(
 let expenditureSubCat = document.querySelector(
   ".sub-categories-chart-month-board .expenditure"
 );
-// let incomeSubCat = document.querySelector(
-//   ".sub-categories-chart-month-board .income"
-// );
 
 let monthTitle = document.querySelector(".month-title");
 
@@ -107,29 +77,21 @@ let sportItems = document.querySelectorAll(
 let healthItems = document.querySelectorAll(
   '[data-subcategory-item="sub-health"]'
 );
-// let giftsItems = document.querySelectorAll(
-//   '[data-subcategory-item="sub-gifts"]'
-// );
+
 let houseItems = document.querySelectorAll(
   '[data-subcategory-item="sub-house"]'
 );
 let billsItems = document.querySelectorAll(
   '[data-subcategory-item="sub-bills"]'
 );
-// let furnitureItems = document.querySelectorAll(
-//   '[data-subcategory-item="sub-furniture"]'
-// );
-// let devicesItems = document.querySelectorAll(
-//   '[data-subcategory-item="sub-devices"]'
-// );
-// let petsItems = document.querySelectorAll('[data-subcategory-item="sub-pets"]');
+
 let serviceItems = document.querySelectorAll(
   '[data-subcategory-item="sub-service"]'
 );
 let hobbiesItems = document.querySelectorAll(
   '[data-subcategory-item="sub-hobbies"]'
 );
-// let workItems = document.querySelectorAll('[data-subcategory-item="sub-work"]');
+
 let otherItems = document.querySelectorAll(
   '[data-subcategory-item="sub-other"]'
 );
@@ -138,23 +100,6 @@ let currentMonth = "";
 let selectedCategory = "";
 let selectedSubCategory = "";
 let sumTotal = 0;
-
-// balance
-// let balance = 12992;
-// statisticsTitleBalance.innerHTML = "CURRENT BALANCE: " + balance + "\u20AC";
-
-// avg income
-// let income = [
-//   2100, 2100, 2100, 2100, 2300, 2300, 2300, 2300, 2300, 2300, 2300, 2300,
-// ];
-// let avgIncome = function getAvg(income) {
-//   let sum = income.reduce((partialSum, a) => partialSum + a, 0);
-//   let avg = sum / income.length;
-//   return avg.toFixed(2);
-// };
-
-// statisticsTitleAvgIncome.innerHTML =
-//   "AVG INCOME: " + avgIncome(income) + "\u20AC";
 
 // limit
 let currentLimitValue = 0;
@@ -165,15 +110,6 @@ if (localStorage.getItem("currentLimitValue") !== null) {
 }
 
 currentLimit.innerHTML = "Current Limit: " + currentLimitValue + "\u20AC";
-
-// total income
-// let totalIncome = function getSum(income) {
-//   let sum = income.reduce((partialSum, a) => partialSum + a, 0);
-//   return sum.toFixed(2);
-// };
-
-// statisticsTitleTotalIncome.innerHTML =
-//   "TOTAL INCOME: " + totalIncome(income) + "\u20AC";
 
 // select 1st category & 1st subcategory on loading, set titles
 function setCategoryOnLoading() {
@@ -193,12 +129,6 @@ function setCategoryOnLoading() {
   subCategoriesChartYearTitle.innerHTML = `Expenses On ${selectedCategory} Per Year`;
 }
 setCategoryOnLoading();
-
-// expenditureTotal.innerHTML = "-" + 640 + "\u20AC";
-// incomeTotal.innerHTML = 2100 + "\u20AC";
-
-// expenditureSubCat.innerHTML = "-" + 32 + "\u20AC";
-// incomeSubCat.innerHTML = 290 + "\u20AC";
 
 // set current month
 (function setCurrentMonth() {
@@ -290,8 +220,6 @@ currentLimitBtn.addEventListener("click", (e) => {
   }
   currentLimitInput.value = "";
   startApp(currentMonth);
-
-  // currentLimit.innerHTML = "Current Limit: " + currentLimitValue + "\u20AC";
 });
 
 clearLimitBtn.addEventListener("click", () => {
@@ -304,14 +232,8 @@ categoryItems.forEach((item) => {
     categoryItems.forEach((element) => {
       element.style.backgroundColor = "#1e1e1e";
       element.style.border = "none";
-      // inputExpensesForm.style.display = "none";
     });
     selectedCategory = e.target.dataset.categoryItem;
-
-    // subCategoriesTitle.innerHTML =
-    //   subCategoryItem[0].dataset.subcategoryItemName;
-    // selectedSubCategory = (subCategoryItem[0].style.border =
-    //   "solid 2px darkorange");
 
     categoriesTitle.innerHTML = selectedCategory;
 
@@ -445,10 +367,8 @@ subCategoryItem.forEach((item) => {
     subCategoryItem.forEach((element) => {
       element.style.backgroundColor = "#1e1e1e";
       element.style.border = "none";
-      // inputExpensesForm.style.display = "flex";
     });
     e.target.style.border = "solid 2px darkorange";
-    // console.log(e.target.dataset.subcategoryItemName);
     selectedSubCategory = e.target.dataset.subcategoryItemName;
     subCategoriesTitle.innerHTML = selectedSubCategory;
     subCategoriesChartYearTitle.innerHTML = `Expenses on ${selectedCategory} Per Year`;
@@ -959,8 +879,6 @@ inputExpensesBtn.addEventListener("click", (e) => {
   startApp(currentMonth);
 });
 
-// selectedCategory = "food";
-// selectedSubCategory = "alcohol";
 function startApp(currentMonth) {
   // CATEGORY EXPENSES PER MONTH
   categoriesChartMonthTitle.innerHTML = "Total Expenses In " + currentMonth;
@@ -970,10 +888,6 @@ function startApp(currentMonth) {
     let mydataSchema = window.localStorage.getItem("dataSchema");
     dataSchema = JSON.parse(mydataSchema);
   }
-  // let mydataSchema = window.localStorage.getItem("dataSchema");
-
-  // console.log(mydataSchema);
-  // console.log("dataSchema: ", JSON.parse(mydataSchema));
 
   labelValues1 = getChartValuesFirst(dataSchema[currentMonth]);
 
@@ -1201,24 +1115,17 @@ function getChartValuesFirst(data) {
 
 // expenses on category in month (second chart)
 function getChartValuesSecond(data, limit) {
-  // let sum = 0;
-  // let avgExp = 0;
-  // let avgSavings = 0;
   let labelsValues = [];
   let dataValues = [];
   let limitValues = [];
-  // let newlimit = limit;
-
   let maxValue = 0;
   let mostMoneySpentOn = "";
   let mostMoneySpentOnValue = 0;
   let mostMoneySpentIn = "";
-  // let dataValuesPerMonth = [];
 
   // month & category {}
   for (const [key1, value1] of Object.entries(data)) {
     labelsValues.push(key1);
-    // dataValuesPerMonth.push(value1);
 
     // subcategory
     let catTotal = 0;
@@ -1231,20 +1138,13 @@ function getChartValuesSecond(data, limit) {
 
       catTotal += Number(subCatTotal);
 
-      // if (key1 === currentMonth) {
-      //   // console.log(key1);
-      //   expenditureTotal.innerHTML = "-" + catTotal + "\u20AC";
-      // }
-
       if (mostMoneySpentOnValue < subCatTotal) {
         mostMoneySpentOnValue = subCatTotal;
         mostMoneySpentOn = key2;
       }
-      // console.log("spent amount", subCatTotal);
       // find category with most expenses
       if (catTotal > maxValue) {
         maxValue = catTotal;
-        // mostMoneySpentOn = key2;
         mostMoneySpentIn = key1;
       }
     }
@@ -1264,28 +1164,12 @@ function getChartValuesSecond(data, limit) {
       limitValues.push(catTotal - limit);
     }
   }
-  // sum += dataValues.reduce((partialSum, a) => partialSum + a, 0);
-  // sum += limitValues.reduce((partialSum, a) => partialSum + a, 0);
-  // sumTotal = sum;
-  // avgExp = sum / dataValues.length;
-
-  // avgSavings = avgIncome(income) - avgExp;
-
-  // statisticsTitleTotalExp.innerHTML = "Total Expenses: " + sumTotal + "\u20AC";
-
-  // statisticsTitleAvgExp.innerHTML =
-  //   "AVG Expenses Per Month: " + avgExp.toFixed(2) + "\u20AC";
-  // statisticsTitleAvgSavings.innerHTML =
-  //   "AVG SAVINGS: " + avgSavings.toFixed(2) + "\u20AC";
 
   statisticsTitleMostSpentOn.innerHTML =
     mostMoneySpentOn + " - " + mostMoneySpentOnValue + "\u20AC";
 
   statisticsTitleMostSpentIn.innerHTML =
     mostMoneySpentIn + " - " + maxValue + "\u20AC";
-
-  // expenditureTotal.innerHTML = limit;
-  // incomeTotal.innerHTML = maxValue;
 
   return [labelsValues, dataValues, limitValues];
 }
@@ -1403,11 +1287,6 @@ function renderChartFourth() {
   }
 }
 
-// show hide left-side menu
-// sideMenu.addEventListener("click", () => {
-//   sideMenu.classList.toggle("side-menu-visible");
-// });
-
 // render charts after window resize
 function resizedwindow() {
   startApp(currentMonth);
@@ -1427,33 +1306,6 @@ clearAllDataBtn.addEventListener("click", () => {
     return;
   }
 });
-
-// function renderChart(name_obj, name_str, config) {
-//   if (this.name_obj !== undefined) {
-//     this.name_obj.destroy();
-//     this.name_obj = new Chart(document.getElementById(name_str), config);
-//   } else {
-//     this.name_obj = new Chart(document.getElementById(name_str), config);
-//   }
-// }
-
-// class Rectangle {
-//   constructor(height, width) {
-//     this.height = height;
-//     this.width = width;
-//   }
-//   // Getter
-//   get area() {
-//     return this.calcArea();
-//   }
-//   // Method
-//   calcArea() {
-//     return this.height * this.width;
-//   }
-// }
-
-// const square = new Rectangle(10, 10);
-// square.area;
 
 // outputfile
 // const link = document.querySelector(".mylink");

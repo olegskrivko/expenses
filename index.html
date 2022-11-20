@@ -10,11 +10,9 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <link rel="stylesheet" href="style.css" />
-
-    <title>Expenses Tracker</title>
+    <title>Expense Tracker</title>
   </head>
   <body>
-    <!-- <div class="side-menu"></div> -->
     <div class="dashboard">
       <div class="categories">
         <h2 class="categories-title"></h2>
@@ -69,7 +67,7 @@
       </div>
       <div class="data">
         <form class="limits">
-          <p class="current-limit"></p>
+          <h2 class="current-limit"></h2>
           <div class="limit-wrapper">
             <input class="current-limit-input" type="text" value="" />
             <button class="current-limit-btn" type="submit">
@@ -96,17 +94,10 @@
         </div>
       </div>
       <div class="calculation">
-        <!-- <h3 class="statistics-title-total-exp">TOTAL EXPENSES: 6 300</h3> -->
-        <!-- <h3 class="statistics-title-balance">CURRENT BALANCE: 10 222</h3> -->
-        <!-- <h3 class="statistics-title-total-income">TOTAL INCOME: 21 000</h3> -->
-        <!-- <h3 class="statistics-title-avg-exp">AVG EXPENSES PER MONTH: 500</h3> -->
-        <!-- <h3 class="statistics-title-avg-income">AVG INCOME: 2 000</h3>
-        <h3 class="statistics-title-avg-savings">AVG SAVINGS PER MONTH: 700</h3> -->
-        <h3 class="statistics-title">THE MOST MONEY SPENT ON</h3>
+        <h3 class="statistics-title">The Most Money Spent On</h3>
         <h3 class="statistics-title-most-spent-on"></h3>
-        <h3 class="statistics-title">THE MOST MONEY SPENT IN</h3>
+        <h3 class="statistics-title">The Most Money Spent In</h3>
         <h3 class="statistics-title-most-spent-in"></h3>
-        <!-- <h3 class="statistics-title">THE MOST SAVINGS MADE IN: AUGUST</h3> -->
       </div>
       <div class="sub-categories">
         <h2 class="sub-categories-title"></h2>
@@ -184,8 +175,8 @@
           >
             <i class="fa-solid fa-user-graduate"></i>
           </div>
-          <!-- TRANSPORT -->
 
+          <!-- TRANSPORT -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-transport"
@@ -214,42 +205,6 @@
           >
             <i class="fa-solid fa-car"></i>
           </div>
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-transport"
-            data-subcategory-item-name="tram"
-          >
-            <i class="fa-solid fa-train-tram"></i>
-          </div> -->
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-transport"
-            data-subcategory-item-name="train"
-          >
-            <i class="fa-solid fa-train"></i>
-          </div> -->
-          <!-- TRAVEL -->
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-travel"
-            data-subcategory-item-name="bus"
-          >
-            <i class="fa-solid fa-bus"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-travel"
-            data-subcategory-item-name="train"
-          >
-            <i class="fa-solid fa-train"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-travel"
-            data-subcategory-item-name="ferry"
-          >
-            <i class="fa-solid fa-ferry"></i>
-          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
@@ -257,27 +212,6 @@
           >
             <i class="fa-solid fa-plane"></i>
           </div>
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-travel"
-            data-subcategory-item-name="car"
-          >
-            <i class="fa-solid fa-car-side"></i>
-          </div> -->
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-travel"
-            data-subcategory-item-name="sailboat"
-          >
-            <i class="fa-solid fa-sailboat"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-travel"
-            data-subcategory-item-name="mountain-city"
-          >
-            <i class="fa-solid fa-mountain-city"></i>
-          </div> -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-travel"
@@ -285,8 +219,8 @@
           >
             <i class="fa-solid fa-hotel"></i>
           </div>
-          <!-- CLOTHES -->
 
+          <!-- CLOTHES -->
           <div
             class="sub-category-item"
             data-subcategory-item="sub-clothes"
@@ -301,6 +235,7 @@
           >
             <i class="fa-solid fa-ring"></i>
           </div>
+
           <!-- SPORT -->
           <div
             class="sub-category-item"
@@ -309,6 +244,7 @@
           >
             <i class="fa-solid fa-dumbbell"></i>
           </div>
+
           <!-- HEALTH -->
           <div
             class="sub-category-item"
@@ -332,22 +268,6 @@
           >
             <i class="fa-solid fa-pills"></i>
           </div>
-
-          <!-- GIFTS -->
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-gifts"
-            data-subcategory-item-name="gifts"
-          >
-            <i class="fa-solid fa-gifts"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-gifts"
-            data-subcategory-item-name="cash"
-          >
-            <i class="fa-solid fa-hand-holding-dollar"></i>
-          </div> -->
 
           <!-- HOUSE -->
           <div
@@ -432,68 +352,8 @@
             <i class="fa-solid fa-temperature-high"></i>
           </div>
 
-          <!-- FURNITURE -->
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-furniture"
-            data-subcategory-item-name="chair"
-          >
-            <i class="fa-solid fa-chair"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-furniture"
-            data-subcategory-item-name="bed"
-          >
-            <i class="fa-solid fa-bed"></i>
-          </div> -->
-          <!-- DEVICES -->
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-devices">
-            <i class="fa-solid fa-tv"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-devices">
-            <i class="fa-solid fa-camera"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-devices">
-            <i class="fa-solid fa-laptop"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-devices">
-            <i class="fa-solid fa-radio"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-devices">
-            <i class="fa-solid fa-desktop"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-devices">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-          </div> -->
-          <!-- PETS -->
-          <!-- <div
-            class="sub-category-item"
-            data-subcategory-item="sub-pets"
-            data-subcategory-item-name="cat"
-          >
-            <i class="fa-solid fa-cat"></i>
-          </div>
-          <div
-            class="sub-category-item"
-            data-subcategory-item="sub-pets"
-            data-subcategory-item-name="dog"
-          >
-            <i class="fa-solid fa-dog"></i>
-          </div> -->
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-pets" >
-            <i class="fa-solid fa-shield-dog"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-pets">
-            <i class="fa-solid fa-shield-cat"></i>
-          </div> -->
           <!-- SERVICE -->
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-service" data-subcategory-item-name="">
-            <i class="fa-solid fa-screwdriver"></i>
-          </div>
-          <div class="sub-category-item" data-subcategory-item="sub-service" data-subcategory-item-name="">
-            <i class="fa-solid fa-hammer"></i>
-          </div> -->
+
           <div
             class="sub-category-item"
             data-subcategory-item="sub-service"
@@ -501,9 +361,6 @@
           >
             <i class="fa-solid fa-wrench"></i>
           </div>
-          <!-- <div class="sub-category-item" data-subcategory-item="sub-service" data-subcategory-item-name="">
-            <i class="fa-solid fa-stairs"></i>
-          </div> -->
 
           <!-- HOBBIES -->
           <div
@@ -583,14 +440,15 @@
             <button class="clear-all-data-btn">
               <i class="fa-solid fa-trash-can"></i>
             </button>
+            <!-- next feature -->
             <!-- <button type="submit" class="expenses-save-btn">
               <i class="fa-solid fa-save"></i>
             </button> -->
             <!-- <button>
               <a
                 class="mylink"
-                download="monty.txt"
-                href="data:text/plain;charset=utf-8,My name is Monty."
+                download="file.txt"
+                href="data:text/plain;charset=utf-8,file"
                 >Download Text File with Name</a
               >
             </button> -->
@@ -601,8 +459,8 @@
         <h2 class="sub-categories-chart-month-title"></h2>
         <div class="sub-categories-chart-month-board">
           <canvas id="subCatMonthChart" width="300" height="300"></canvas>
+          <p class="expenditure-title"></p>
           <p class="expenditure"></p>
-          <p class="income"></p>
         </div>
       </div>
       <div class="sub-categories-chart-year">
@@ -612,16 +470,6 @@
         </div>
       </div>
     </div>
-    <!-- <form action="">
-      <input type="number" class="amount-expenses" name="amount" id="" />
-      <input type="color" class="amount-color" name="" id="" />
-      <input type="text" class="type-expenses" name="type" id="" />
-      <button type="submit" class="add-expenses-btn">Add Expenses</button>
-    </form>
-    <div class="board">
-      <canvas id="myChart" width="300" height="300"></canvas>
-      <p class="balance">Balance: 10 899 Euro</p>
-    </div> -->
     <script src="app.js"></script>
   </body>
 </html>
