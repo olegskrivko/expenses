@@ -290,27 +290,21 @@ body {
 }
 
 /* MEDIA*/
-/* @media screen and (max-width: 992px) {
+@media screen and (max-width: 992px) {
   body {
-    background-color: blue;
-  } */
-/* .dashboard {
     background-color: #1e1e1e;
-    min-height: 100vh;
-    min-width: 100vw;
+  }
+  .dashboard {
+    background-color: #1e1e1e;
+    height: 100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas:
       "categories sub-categories categories-chart-month"
-      "data calculation categories-chart-year"
-      "data calculation sub-categories-chart-month";
-  } */
-/* } */
-
-/* On screens that are 600px or less, set the background color to olive */
-/* @media screen and (max-width: 600px) {
-  body {
-    background-color: olive;
+      "categories-chart-year categories-chart-year categories-chart-year"
+      "data calculation sub-categories-chart-month"
+      "sub-categories-chart-year sub-categories-chart-year sub-categories-chart-year";
   }
-} */
+}
